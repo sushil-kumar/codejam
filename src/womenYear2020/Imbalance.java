@@ -12,12 +12,18 @@ public class Imbalance {
         try {
         	scanner = new Scanner(new BufferedReader(new InputStreamReader(System.in)));        	
             int numCases = scanner.nextInt();
-            List<String>  allPermutations = allPossiblePermutations(4);
+            List<String>  allPermutations = allPossiblePermutations(16);
+            boolean isPermutationCalculatedFor1000 = false;
             for (int idx=0;idx<numCases;++idx) {
             	int numMarbles = scanner.nextInt();
                 int[] removalOrder = new int[numMarbles];
                 for (int i=0;i<numMarbles;++i) {
                     removalOrder[i] = scanner.nextInt();            
+                }
+
+                if (!isPermutationCalculatedFor1000 && numMarbles > 16) {
+                    allPermutations = allPossiblePermutations(1000);
+                    isPermutationCalculatedFor1000 = true;
                 }
 
                 // Create all possible Permutations
