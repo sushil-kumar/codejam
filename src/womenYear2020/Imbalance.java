@@ -46,9 +46,15 @@ public class Imbalance {
                     startIndex = len;
                 } */
 
+                int startIndex = 0;
                 for (int i=0;i<allPermutations.size();++i) {
-                    if (allPermutations.get(i).length() < numMarbles)
-                        continue;
+                    if (allPermutations.get(i).length() == numMarbles) {
+                        startIndex = i;
+                        break;
+                    }
+                }
+
+                for (int i=startIndex;i<allPermutations.size();++i) {
                     char temp[] = allPermutations.get(i).toCharArray();
                     int j=0;
                     for (;j<numMarbles;++j) {
@@ -80,17 +86,15 @@ public class Imbalance {
         List<String> allPermutations = new ArrayList<>();
         allPermutations.add("L");
         allPermutations.add("R");
-        int startIndex = 0, endIndex = 2;
+        int startIndex = 0;
         for (int i=1;i<n;++i) {
-            int len = endIndex;
+            int len = allPermutations.size();
             for (int j=startIndex;j<len;++j) {
                 if (isWeightBalanced((allPermutations.get(j) + "L").toCharArray())) {
                     allPermutations.add((allPermutations.get(j) + "L"));
-                    endIndex++;
                 }
                 if (isWeightBalanced((allPermutations.get(j) + "R").toCharArray())) {
                     allPermutations.add((allPermutations.get(j) + "R"));
-                    endIndex++;
                 }
             }
             startIndex = len;
