@@ -13,37 +13,18 @@ public class Imbalance {
         	scanner = new Scanner(new BufferedReader(new InputStreamReader(System.in)));        	
             int numCases = scanner.nextInt();
             List<String>  allPermutations = allPossiblePermutations(16);
+            //allPermutations.forEach(System.out::println);
             boolean isPermutationCalculatedFor1000 = false;
             for (int idx=0;idx<numCases;++idx) {
             	int numMarbles = scanner.nextInt();
                 int[] removalOrder = new int[numMarbles];
                 for (int i=0;i<numMarbles;++i) {
-                    removalOrder[i] = scanner.nextInt();            
+                    removalOrder[i] = scanner.nextInt();   
                 }
 
-                if (!isPermutationCalculatedFor1000 && numMarbles > 16) {
+                /* if (!isPermutationCalculatedFor1000 && numMarbles > 16) {
                     allPermutations = allPossiblePermutations(1000);
                     isPermutationCalculatedFor1000 = true;
-                }
-
-                // Create all possible Permutations
-                /*String[] allPermutations = new String[20];
-                allPermutations[0] = "L";
-                allPermutations[1] = "R";
-                int startIndex = 0, endIndex = 2;
-                for (int i=1;i<numMarbles;++i) {
-                    int len = endIndex;
-                    for (int j=startIndex;j<len;++j) {
-                        if (isWeightBalanced((allPermutations[j] + "L").toCharArray())) {
-                            allPermutations[endIndex] = (allPermutations[j] + "L");
-                            endIndex++;
-                        }
-                        if (isWeightBalanced((allPermutations[j] + "R").toCharArray())) {
-                            allPermutations[endIndex] = allPermutations[j] + "R";
-                            endIndex++;
-                        }
-                    }
-                    startIndex = len;
                 } */
 
                 int startIndex = 0;
@@ -56,14 +37,15 @@ public class Imbalance {
 
                 for (int i=startIndex;i<allPermutations.size();++i) {
                     char temp[] = allPermutations.get(i).toCharArray();
-                    int j=0;
-                    for (;j<numMarbles;++j) {
+                    boolean isFound = true;
+                    for (int j=0;j<numMarbles;++j) {
                         temp[removalOrder[j] - 1] = '-';
                         if (!isWeightBalanced(temp)) {
+                            isFound = false;
                             break;
                         }
                     }
-                    if (j == numMarbles) {
+                    if (isFound) {
                         System.out.println("Case #" + (idx+1) + ": " + allPermutations.get(i));
                         break;
                     }
@@ -102,7 +84,7 @@ public class Imbalance {
         return allPermutations;
     }
     
-    private static boolean isWeightBalanced(char []order) {
+    private static boolean isWeightBalanced(char[] order) {
         int l = 0, r = 0;
         for (int i=0;i<order.length;++i) {
             if (order[i] == 'L')
