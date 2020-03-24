@@ -13,7 +13,7 @@ public class Imbalance {
         	scanner = new Scanner(new BufferedReader(new InputStreamReader(System.in)));        	
             int numCases = scanner.nextInt();
             List<String>  allPermutations = allPossiblePermutations(16);
-            //allPermutations.forEach(System.out::println);
+            //allPermutations.stream().filter(p -> p.length() == 3).forEach(System.out::println);
             boolean isPermutationCalculatedFor1000 = false;
             for (int idx=0;idx<numCases;++idx) {
             	int numMarbles = scanner.nextInt();
