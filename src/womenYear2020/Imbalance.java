@@ -14,7 +14,7 @@ public class Imbalance {
             int numCases = scanner.nextInt();
             List<String>  allPermutations = allPossiblePermutations(16);
             //allPermutations.stream().filter(p -> p.length() == 3).forEach(System.out::println);
-            boolean isPermutationCalculatedFor1000 = false;
+            //boolean isPermutationCalculatedFor1000 = false;
             for (int idx=0;idx<numCases;++idx) {
             	int numMarbles = scanner.nextInt();
                 int[] removalOrder = new int[numMarbles];
