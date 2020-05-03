@@ -20,6 +20,7 @@ public class B {
             //scanner = new Scanner(new BufferedReader(new FileReader("/Users/macbook/Coding/codejam/src/year2020/round1C/input")));     	
             int numCases = scanner.nextInt();
             for (int idx=0;idx<numCases;++idx) {
+                @SuppressWarnings("unused")
                 int bound = scanner.nextInt();
                 List<Map<Character, Long>> data = new ArrayList<>(10);
                 for (int i = 0; i < 10; i++) {
